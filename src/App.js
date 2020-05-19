@@ -7,22 +7,25 @@ class GenreSelect extends React.Component {
     super(props);
 
     this.state = {
-      value: props.value
+      genre: props.genre
     }
   }
 
   changeGenre = (event) => {
-    this.setState({value: event.target.value});
+    this.setState({genre: event.target.value});
   }
 
   render() {
     return (
-      <select value={this.state.genre} onChange={this.changeGenre}>
-        <option value="ROCK">ROCK</option>
-        <option value="JAZZ">JAZZ</option>
-        <option value="HIPHOP">HIPHOP</option>
-        <option value="FOLK">FOLK</option>
-      </select>
+      <div id="recipe" style={{display: "inline"}}>
+        <select value={this.state.genre} onChange={this.changeGenre}>
+          <option value="ROCK">ROCK</option>
+          <option value="JAZZ">JAZZ</option>
+          <option value="HIPHOP">HIPHOP</option>
+          <option value="FOLK">FOLK</option>
+          <option value="NONE">NONE</option>
+        </select>
+      </div>
     )
   }
 }
@@ -53,11 +56,11 @@ class CardForm extends React.Component {
     }
     else {
       return (
-        <form>
+        <div id="card">
           <label>Card #{this.props.cardIdx}: </label>
 
           <label>Genre: </label>
-          <GenreSelect value="ROCK" />
+          <GenreSelect genre="ROCK" />
 
           <label> Points Per Loop: </label>
           <input type="text" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
@@ -65,7 +68,7 @@ class CardForm extends React.Component {
           <input type="text" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
           
           <button type="button" onClick={this.removeCard}>Remove Card</button>
-        </form>
+        </div>
       )
     }
   }
@@ -75,6 +78,8 @@ class RecipeForm extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log(props.genre0);
+
     this.state = {
       genres: [props.genre0, props.genre1, props.genre2],
       barPoints: [props.barPoints0, props.barPoints1, props.barPoints2]
@@ -83,9 +88,14 @@ class RecipeForm extends React.Component {
 
   render() {
     return (
-      <form>
-        <label>Genre: </label> <GenreSelect value="ROCK" />
-      </form>
+      <div id="recipe" style={{display: "inline"}}>
+        <label>Recipe #{this.props.recipeIdx}: </label>
+        <GenreSelect genre={this.state.genres[0]} />
+        <GenreSelect genre={this.state.genres[1]} />
+        <GenreSelect genre={this.state.genres[2]} />
+        
+        <br />
+      </div>
     )
   }
 }
@@ -97,7 +107,7 @@ export class LevelForm extends React.Component {
       levelName: "Example Level",
       levelTimer: 0,
       cards: [<CardForm cardIdx="1" />],
-      recipes: [<RecipeForm />]
+      recipes: [<RecipeForm recipeIdx = "1" genre0="JAZZ" barPoints0="100" genre1="HIPHOP" barPoints1="100"/>]
     };
   }
 
@@ -117,6 +127,12 @@ export class LevelForm extends React.Component {
     let numCards = this.state.cards.length;
     this.state.cards.push(<CardForm cardIdx={numCards+1} />);
     this.setState({cards: this.state.cards});
+  }
+
+  addRecipe = () => {
+    let numRecipes = this.state.recipes.length;
+    this.state.recipes.push(<RecipeForm recipeIdx={numRecipes+1}/>);
+    this.setState({recipes: this.state.recipes});
   }
 
   render() {
@@ -141,7 +157,7 @@ export class LevelForm extends React.Component {
         </div> 
 
         <br/>
-        <label>Recipes</label>
+        <label>Recipes</label> <button type="button" onClick={this.addRecipe}>New Recipe</button>
         <br />
         <div id="recipes">
             {this.state.recipes.map(recipe => {
