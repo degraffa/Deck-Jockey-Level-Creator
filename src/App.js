@@ -90,7 +90,7 @@ class RecipeForm extends React.Component {
 
   render() {
     return (
-      <div id="recipe" style={{display: "inline"}}>
+      <div id="recipe" name="recipe-div" style={{display: "inline"}}>
         <label>Recipe #{this.props.recipeIdx}: </label>
         <label>Genres: 1: </label>
         <GenreSelect genre={this.state.genres[0]} parentClass="recipe"/>
@@ -166,8 +166,6 @@ export class LevelForm extends React.Component {
       const cardDiv = cardDivs[i];
       const cardInputs = cardDiv.querySelectorAll("input, select");
 
-      console.log(cardInputs);
-
       // first is genre, second is pointsPerLoop, third is loopMultiplier
       let genreVal = cardInputs[0].value;
       let pointsPerLoopVal = Number(cardInputs[1].value);
@@ -177,12 +175,37 @@ export class LevelForm extends React.Component {
         genre: genreVal,
         pointsPerLoop: pointsPerLoopVal,
         loopMultiplier: loopMultiplierVal
-      }
+      };
 
       levelJSON.cards.push(cardJSON);
     }
-    // step 3: recipes
 
+    // step 3: recipes
+    const recipeDivs = document.getElementsByName("recipe-div");
+    for (let i = 0; i < recipeDivs.length; i++) {
+      const recipeDiv = recipeDivs[i];
+      const recipeInputs = recipeDiv.querySelectorAll("input, select");
+
+      // first 3 are genre, last 3 are bar points
+      let genre0Val = recipeInputs[0].value;
+      let genre1Val = recipeInputs[1].value;
+      let genre2Val = recipeInputs[2].value;
+
+      let barPoints0Val = Number(recipeInputs[3].value);
+      let barPoints1Val = Number(recipeInputs[4].value);
+      let barPoints2Val = Number(recipeInputs[5].value);
+
+      let recipeJSON = {
+        genre0: genre0Val,
+        barPoints0: barPoints0Val,
+        genre1: genre1Val,
+        barPoints1: barPoints1Val,
+        genre2: genre2Val,
+        barPoints2: barPoints2Val
+      };
+
+      levelJSON.recipes.push(recipeJSON);
+    }
 
     return JSON.stringify(levelJSON, null, "  ");
   }
