@@ -54,7 +54,7 @@ class CardForm extends React.Component {
         <label>Card #{this.props.cardIdx}: </label>
 
         <label>Genre: </label>
-        <GenreSelect genre="NONE" parentClass="recipe"/>
+        <GenreSelect genre="NONE" parentClass="card"/>
 
         <label> Points Per Loop: </label>
         <input type="text" class="card" name="pointsPerLoop" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
@@ -146,6 +146,7 @@ export class LevelForm extends React.Component {
   formToJSON = (form) => {
     var levelJSON = {};
     
+    // step 1: Level metadata
     const levelNameInput = document.getElementsByName("levelName")[0];
     const levelTimerInput = document.getElementsByName("levelTimer")[0];
 
@@ -153,6 +154,13 @@ export class LevelForm extends React.Component {
     levelJSON.levelTimer = Number(levelTimerInput.value);
     levelJSON.cards = [];
     levelJSON.recipes = [];
+
+    // step 2: Cards
+    const cardInputs = document.getElementsByClassName("card");
+    alert(cardInputs.length);
+
+    // step 3: recipes
+    
 
     return JSON.stringify(levelJSON, null, "  ");
   }
