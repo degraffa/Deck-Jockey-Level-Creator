@@ -36,6 +36,7 @@ class CardForm extends React.Component {
     this.state = {
       genre: "NONE",
       pointsPerLoop: 0.0,
+      loopMultiplier: 0.0,
       difficulty: 1,
       loopName: "funky"
     }
@@ -61,9 +62,9 @@ class CardForm extends React.Component {
         <GenreSelect genre="NONE" parentClass="card"/>
 
         <label> Points Per Loop: </label>
-        <input type="text" class="card" name="pointsPerLoop" value={this.state.pointsPerLoop} onChange={this.changePointsPerLoop} style={{width: 30, textAlign: "center"}} />
+        <input type="text" name="pointsPerLoop" value={this.state.pointsPerLoop} onChange={this.changePointsPerLoop} style={{width: 30, textAlign: "center"}} />
         <label> Loop Multiplier: </label>
-        <input type="text" class="card" name="loopMultiplier" value={this.state.pointsPerLoop} onChange={this.changeLoopMultiplier} style={{width: 30, textAlign: "center"}} />
+        <input type="text" name="loopMultiplier" value={this.state.loopMultiplier} onChange={this.changeLoopMultiplier} style={{width: 30, textAlign: "center"}} />
         <label> </label>
         <button type="button" onClick={this.removeCard}>Remove Card</button>
       </div>
