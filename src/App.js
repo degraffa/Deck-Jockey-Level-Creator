@@ -19,11 +19,11 @@ class GenreSelect extends React.Component {
     return (
       <div id="recipe" style={{display: "inline"}}>
         <select value={this.state.genre} onChange={this.changeGenre}>
+          <option value="NONE">NONE</option>
           <option value="ROCK">ROCK</option>
           <option value="JAZZ">JAZZ</option>
           <option value="HIPHOP">HIPHOP</option>
           <option value="FOLK">FOLK</option>
-          <option value="NONE">NONE</option>
         </select>
       </div>
     )
@@ -34,7 +34,7 @@ class CardForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      genre: "ROCK",
+      genre: "NONE",
       pointsPerLoop: 0.0,
       difficulty: 1,
       loopName: "funky",
@@ -60,13 +60,13 @@ class CardForm extends React.Component {
           <label>Card #{this.props.cardIdx}: </label>
 
           <label>Genre: </label>
-          <GenreSelect genre="ROCK" />
+          <GenreSelect genre="NONE" />
 
           <label> Points Per Loop: </label>
           <input type="text" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
           <label> Loop Multiplier: </label>
           <input type="text" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
-          
+          <label> </label>
           <button type="button" onClick={this.removeCard}>Remove Card</button>
         </div>
       )
@@ -86,14 +86,28 @@ class RecipeForm extends React.Component {
     }
   }
 
+  removeRecipe() {
+
+  }
+
   render() {
     return (
       <div id="recipe" style={{display: "inline"}}>
         <label>Recipe #{this.props.recipeIdx}: </label>
+        <label>Genres: 1: </label>
         <GenreSelect genre={this.state.genres[0]} />
+        <label> 2: </label>
         <GenreSelect genre={this.state.genres[1]} />
+        <label> 3: </label>
         <GenreSelect genre={this.state.genres[2]} />
-        
+        <label> Points: 1: </label>
+        <input type="text" value={this.state.barPoints[0]} style={{width: 30, textAlign: "center"}}></input>
+        <label> 2: </label>
+        <input type="text" value={this.state.barPoints[1]} style={{width: 30, textAlign: "center"}}></input>
+        <label> 3: </label>
+        <input type="text" value={this.state.barPoints[2]} style={{width: 30, textAlign: "center"}}></input>
+        <label> </label>
+        <button type="button" onClick={this.removeRecipe}> Remove Recipe </button>
         <br />
       </div>
     )
@@ -107,7 +121,7 @@ export class LevelForm extends React.Component {
       levelName: "Example Level",
       levelTimer: 0,
       cards: [<CardForm cardIdx="1" />],
-      recipes: [<RecipeForm recipeIdx = "1" genre0="JAZZ" barPoints0="100" genre1="HIPHOP" barPoints1="100"/>]
+      recipes: [<RecipeForm recipeIdx = "1" genre0="JAZZ" barPoints0="100" genre1="HIPHOP" barPoints1="100" genre2="ROCK" barPoints2="100"/>]
     };
   }
 
@@ -118,6 +132,7 @@ export class LevelForm extends React.Component {
   changeTimer(event) {
     this.setState(this.state.levelTimer, event.target.value);
   }
+
   handleSubmit = (event) => {
     event.preventDefault();
     alert("" + this.state.levelName);
