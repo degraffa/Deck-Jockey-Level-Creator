@@ -17,8 +17,8 @@ class GenreSelect extends React.Component {
 
   render() {
     return (
-      <div id="recipe" style={{display: "inline"}}>
-        <select value={this.state.genre} onChange={this.changeGenre}>
+      <div id="genre" style={{display: "inline"}}>
+        <select class={this.props.parentClass} name="genre" value={this.state.genre} onChange={this.changeGenre}>
           <option value="NONE">NONE</option>
           <option value="ROCK">ROCK</option>
           <option value="JAZZ">JAZZ</option>
@@ -37,8 +37,7 @@ class CardForm extends React.Component {
       genre: "NONE",
       pointsPerLoop: 0.0,
       difficulty: 1,
-      loopName: "funky",
-      isRemoved: false
+      loopName: "funky"
     }
   }
 
@@ -47,30 +46,24 @@ class CardForm extends React.Component {
   }
 
   removeCard = () => {
-    this.setState({removed: true});
   }
 
   render() {
-    if (this.state.isRemoved) {
-      return (<br />)
-    }
-    else {
-      return (
-        <div id="card">
-          <label>Card #{this.props.cardIdx}: </label>
+    return (
+      <div id="card">
+        <label>Card #{this.props.cardIdx}: </label>
 
-          <label>Genre: </label>
-          <GenreSelect genre="NONE" />
+        <label>Genre: </label>
+        <GenreSelect genre="NONE" parentClass="recipe"/>
 
-          <label> Points Per Loop: </label>
-          <input type="text" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
-          <label> Loop Multiplier: </label>
-          <input type="text" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
-          <label> </label>
-          <button type="button" onClick={this.removeCard}>Remove Card</button>
-        </div>
-      )
-    }
+        <label> Points Per Loop: </label>
+        <input type="text" class="card" name="pointsPerLoop" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
+        <label> Loop Multiplier: </label>
+        <input type="text" class="card" name="loopMultiplier" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
+        <label> </label>
+        <button type="button" onClick={this.removeCard}>Remove Card</button>
+      </div>
+    )
   }
 }
 
@@ -95,17 +88,17 @@ class RecipeForm extends React.Component {
       <div id="recipe" style={{display: "inline"}}>
         <label>Recipe #{this.props.recipeIdx}: </label>
         <label>Genres: 1: </label>
-        <GenreSelect genre={this.state.genres[0]} />
+        <GenreSelect genre={this.state.genres[0]} parentClass="recipe"/>
         <label> 2: </label>
-        <GenreSelect genre={this.state.genres[1]} />
+        <GenreSelect genre={this.state.genres[1]} parentClass="recipe"/>
         <label> 3: </label>
-        <GenreSelect genre={this.state.genres[2]} />
+        <GenreSelect genre={this.state.genres[2]} parentClass="recipe"/>
         <label> Points: 1: </label>
-        <input type="text" value={this.state.barPoints[0]} style={{width: 30, textAlign: "center"}}></input>
+        <input type="text" class="recipe" name="barPoints0" value={this.state.barPoints[0]} style={{width: 30, textAlign: "center"}}></input>
         <label> 2: </label>
-        <input type="text" value={this.state.barPoints[1]} style={{width: 30, textAlign: "center"}}></input>
+        <input type="text" class="recipe" name="barPoints1" value={this.state.barPoints[1]} style={{width: 30, textAlign: "center"}}></input>
         <label> 3: </label>
-        <input type="text" value={this.state.barPoints[2]} style={{width: 30, textAlign: "center"}}></input>
+        <input type="text" class="recipe" name="barPoints2" value={this.state.barPoints[2]} style={{width: 30, textAlign: "center"}}></input>
         <label> </label>
         <button type="button" onClick={this.removeRecipe}> Remove Recipe </button>
         <br />
@@ -133,11 +126,6 @@ export class LevelForm extends React.Component {
     this.setState(this.state.levelTimer, event.target.value);
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    alert("" + this.state.levelName);
-  }
-
   addCard = () => {
     let numCards = this.state.cards.length;
     this.state.cards.push(<CardForm cardIdx={numCards+1} />);
@@ -150,37 +138,87 @@ export class LevelForm extends React.Component {
     this.setState({recipes: this.state.recipes});
   }
 
+  // formToJSON = (elements) => [].reduce.call(elements, (data, element) => {
+  //   data[element.name] = element.value;
+  //   return data;
+  // }, {});
+
+  formToJSON = (form) => {
+    var levelJSON = {};
+    
+    const levelNameInput = document.getElementsByName("levelName")[0];
+    const levelTimerInput = document.getElementsByName("levelTimer")[0];
+
+    levelJSON.levelName = levelNameInput.value;
+    levelJSON.levelTimer = Number(levelTimerInput.value);
+    levelJSON.cards = [];
+    levelJSON.recipes = [];
+
+    return JSON.stringify(levelJSON, null, "  ");
+  }
+
+  handleSubmit = (event) => {
+    // stop form from reloading the page
+    event.preventDefault();
+
+    const form = document.getElementById("level-form");
+
+    const json = this.formToJSON(form);
+
+    const jsonContainer = document.getElementById("json-textarea");
+
+    jsonContainer.value = json;
+  }
+
+
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>Level Name: </label> 
-        <input type="text" value={this.state.levelName} onChange={this.changeName}/>
-        
-        <br />
-        <label>Level Timer: </label>
-        
-        <input type="text" value={this.state.levelTimer} onChange={this.changeTimer}/>
-        <br />
+      <div id="form-div">
+        <form id="level-form" onSubmit={this.handleSubmit}>
+          <label>Level Name: </label> 
+          <input type="text" name="levelName" value={this.state.levelName} onChange={this.changeName}/>
+          
+          <br />
+          <label>Level Timer: </label>
+          
+          <input type="text" name="levelTimer" value={this.state.levelTimer} onChange={this.changeTimer}/>
+          <br />
 
-        <br />
-        <label> Cards </label> <button type="button" onClick={this.addCard}>New Card</button>
-        <br />
-        <div id="cards">
-          {this.state.cards.map(card => {
-            return(card);
-          })}
-        </div> 
-
-        <br/>
-        <label>Recipes</label> <button type="button" onClick={this.addRecipe}>New Recipe</button>
-        <br />
-        <div id="recipes">
-            {this.state.recipes.map(recipe => {
-              return(recipe);
+          <br />
+          <label> Cards </label> <button type="button" onClick={this.addCard}>New Card</button>
+          <br />
+          <div id="cards">
+            {this.state.cards.map(card => {
+              console.log(card);
+              return(card);
             })}
-        </div> 
-        <input type="submit" value="Get Level JSON" />
-      </form>
+          </div> 
+
+          <br/>
+          <label>Recipes</label> <button type="button" onClick={this.addRecipe}>New Recipe</button>
+          <br />
+          <div id="recipes">
+              {this.state.recipes.map(recipe => {
+                return(recipe);
+              })}
+          </div> 
+
+          <br />
+          <br />
+          <input type="submit" value="Get Level JSON" />
+        </form>
+        <div id="json-text-div">
+          <br />
+          <textarea id="json-textarea" style={{
+            width: 500,
+            height: 500
+          }}>
+
+          </textarea>
+        </div>
+
+      </div>
+      
     )
   }
 }
