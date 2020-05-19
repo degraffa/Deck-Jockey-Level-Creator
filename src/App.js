@@ -227,6 +227,9 @@ export class LevelForm extends React.Component {
   render() {
     return (
       <div id="form-div">
+        <h1>Deck Jockey Level Creator</h1>
+        <br />
+
         <form id="level-form" onSubmit={this.handleSubmit}>
           <label>Level Name: </label> 
           <input type="text" name="levelName" value={this.state.levelName} onChange={this.changeName}/>
@@ -262,6 +265,7 @@ export class LevelForm extends React.Component {
         </form>
         <div id="json-text-div">
           <br />
+          <label> JSON Text Output </label> <br />
           <textarea id="json-textarea" style={{
             width: 500,
             height: 500
