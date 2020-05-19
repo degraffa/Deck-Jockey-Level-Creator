@@ -41,8 +41,12 @@ class CardForm extends React.Component {
     }
   }
 
-  changeGenre = (event) => {
-    this.setState({genre: this.state.value});
+  changePointsPerLoop = (event) => {
+    this.setState({pointsPerLoop: event.target.value});
+  }
+
+  changeLoopMultiplier = (event) => {
+    this.setState({loopMultiplier: event.target.value});
   }
 
   removeCard = () => {
@@ -50,16 +54,16 @@ class CardForm extends React.Component {
 
   render() {
     return (
-      <div id="card">
+      <div name="card-div">
         <label>Card #{this.props.cardIdx}: </label>
 
         <label>Genre: </label>
         <GenreSelect genre="NONE" parentClass="card"/>
 
         <label> Points Per Loop: </label>
-        <input type="text" class="card" name="pointsPerLoop" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
+        <input type="text" class="card" name="pointsPerLoop" value={this.state.pointsPerLoop} onChange={this.changePointsPerLoop} style={{width: 30, textAlign: "center"}} />
         <label> Loop Multiplier: </label>
-        <input type="text" class="card" name="loopMultiplier" value={this.state.pointsPerLoop} style={{width: 30, textAlign: "center"}} />
+        <input type="text" class="card" name="loopMultiplier" value={this.state.pointsPerLoop} onChange={this.changeLoopMultiplier} style={{width: 30, textAlign: "center"}} />
         <label> </label>
         <button type="button" onClick={this.removeCard}>Remove Card</button>
       </div>
@@ -144,7 +148,7 @@ export class LevelForm extends React.Component {
   // }, {});
 
   formToJSON = (form) => {
-    var levelJSON = {};
+    let levelJSON = {};
     
     // step 1: Level metadata
     const levelNameInput = document.getElementsByName("levelName")[0];
@@ -156,11 +160,28 @@ export class LevelForm extends React.Component {
     levelJSON.recipes = [];
 
     // step 2: Cards
-    const cardInputs = document.getElementsByClassName("card");
-    alert(cardInputs.length);
+    const cardDivs = document.getElementsByName("card-div");
+    for (let i = 0; i < cardDivs.length; i++) {
+      const cardDiv = cardDivs[i];
+      const cardInputs = cardDiv.querySelectorAll("input, select");
 
+      console.log(cardInputs);
+
+      // first is genre, second is pointsPerLoop, third is loopMultiplier
+      let genreVal = cardInputs[0].value;
+      let pointsPerLoopVal = Number(cardInputs[1].value);
+      let loopMultiplierVal = Number(cardInputs[2].value);
+
+      let cardJSON = {
+        genre: genreVal,
+        pointsPerLoop: pointsPerLoopVal,
+        loopMultiplier: loopMultiplierVal
+      }
+
+      levelJSON.cards.push(cardJSON);
+    }
     // step 3: recipes
-    
+
 
     return JSON.stringify(levelJSON, null, "  ");
   }

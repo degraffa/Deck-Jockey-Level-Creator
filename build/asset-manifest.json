@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ard96/Deck-Jockey-Level-Creator/static/css/main.22ffd47c.chunk.css",
-    "main.js": "/ard96/Deck-Jockey-Level-Creator/static/js/main.3b17b18d.chunk.js",
-    "main.js.map": "/ard96/Deck-Jockey-Level-Creator/static/js/main.3b17b18d.chunk.js.map",
+    "main.js": "/ard96/Deck-Jockey-Level-Creator/static/js/main.d56dd173.chunk.js",
+    "main.js.map": "/ard96/Deck-Jockey-Level-Creator/static/js/main.d56dd173.chunk.js.map",
     "runtime-main.js": "/ard96/Deck-Jockey-Level-Creator/static/js/runtime-main.43148809.js",
     "runtime-main.js.map": "/ard96/Deck-Jockey-Level-Creator/static/js/runtime-main.43148809.js.map",
     "static/js/2.8016843d.chunk.js": "/ard96/Deck-Jockey-Level-Creator/static/js/2.8016843d.chunk.js",
     "static/js/2.8016843d.chunk.js.map": "/ard96/Deck-Jockey-Level-Creator/static/js/2.8016843d.chunk.js.map",
     "index.html": "/ard96/Deck-Jockey-Level-Creator/index.html",
-    "precache-manifest.9d8dfca06afea607fc2473533984bd64.js": "/ard96/Deck-Jockey-Level-Creator/precache-manifest.9d8dfca06afea607fc2473533984bd64.js",
+    "precache-manifest.8f3e127f94a89902eb4191dcf448514c.js": "/ard96/Deck-Jockey-Level-Creator/precache-manifest.8f3e127f94a89902eb4191dcf448514c.js",
     "service-worker.js": "/ard96/Deck-Jockey-Level-Creator/service-worker.js",
     "static/css/main.22ffd47c.chunk.css.map": "/ard96/Deck-Jockey-Level-Creator/static/css/main.22ffd47c.chunk.css.map",
     "static/js/2.8016843d.chunk.js.LICENSE.txt": "/ard96/Deck-Jockey-Level-Creator/static/js/2.8016843d.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.43148809.js",
     "static/js/2.8016843d.chunk.js",
     "static/css/main.22ffd47c.chunk.css",
-    "static/js/main.3b17b18d.chunk.js"
+    "static/js/main.d56dd173.chunk.js"
   ]
 }
