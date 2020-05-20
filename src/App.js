@@ -240,7 +240,7 @@ export class LevelForm extends React.Component {
           <input type="text" name="levelTimer" value={this.state.levelTimer} onChange={this.changeTimer}/>
           <br />
 
-          <br />
+          {/* <br />
           <label> Cards </label> <button type="button" onClick={this.addCard}>New Card</button>
           <br />
           <div id="cards">
@@ -248,7 +248,7 @@ export class LevelForm extends React.Component {
               console.log(card);
               return(card);
             })}
-          </div> 
+          </div>  */}
 
           <br/>
           <label>Recipes</label> <button type="button" onClick={this.addRecipe}>New Recipe</button>

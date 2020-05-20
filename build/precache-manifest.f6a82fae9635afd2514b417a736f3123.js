@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "24348a6f4054231d8f71da4c7d656f83",
+    "revision": "83f0460f2823ec8dc56ef4aa416ee795",
     "url": "/ard96/Deck-Jockey-Level-Creator/index.html"
   },
   {
-    "revision": "b982c9593abd79bd5e32",
+    "revision": "81a627b1183e13800080",
     "url": "/ard96/Deck-Jockey-Level-Creator/static/css/main.22ffd47c.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ard96/Deck-Jockey-Level-Creator/static/js/2.8016843d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b982c9593abd79bd5e32",
-    "url": "/ard96/Deck-Jockey-Level-Creator/static/js/main.73c11ad2.chunk.js"
+    "revision": "81a627b1183e13800080",
+    "url": "/ard96/Deck-Jockey-Level-Creator/static/js/main.2ee58732.chunk.js"
   },
   {
     "revision": "5df4fd22e30371a1ed57",

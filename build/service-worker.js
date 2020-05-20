@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ard96/Deck-Jockey-Level-Creator/precache-manifest.96325a721091fa1cfea75a5bfbea0c38.js"
+  "/ard96/Deck-Jockey-Level-Creator/precache-manifest.f6a82fae9635afd2514b417a736f3123.js"
 );
 
 self.addEventListener('message', (event) => {
