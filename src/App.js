@@ -76,12 +76,25 @@ class RecipeForm extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(props.genre0);
-
     this.state = {
       genres: [props.genre0, props.genre1, props.genre2],
       barPoints: [props.barPoints0, props.barPoints1, props.barPoints2]
     }
+  }
+
+  changeBarPoints0 = (event) => {
+    let newBarPoints = [event.target.value, this.state.barPoints[1], this.state.barPoints[2]];
+    this.setState({barPoints: newBarPoints});
+  }
+
+  changeBarPoints1 = (event) => {
+    let newBarPoints = [this.state.barPoints[0], event.target.value, this.state.barPoints[2]];
+    this.setState({barPoints: newBarPoints});
+  }
+
+  changeBarPoints2 = (event) => {
+    let newBarPoints = [this.state.barPoints[0], this.state.barPoints[1], event.target.value];
+    this.setState({barPoints: newBarPoints});
   }
 
   removeRecipe() {
@@ -99,11 +112,11 @@ class RecipeForm extends React.Component {
         <label> 3: </label>
         <GenreSelect genre={this.state.genres[2]} parentClass="recipe"/>
         <label> Points: 1: </label>
-        <input type="text" class="recipe" name="barPoints0" value={this.state.barPoints[0]} style={{width: 30, textAlign: "center"}}></input>
+        <input type="text" class="recipe" name="barPoints0" value={this.state.barPoints[0]} onChange={this.changeBarPoints0} style={{width: 30, textAlign: "center"}}></input>
         <label> 2: </label>
-        <input type="text" class="recipe" name="barPoints1" value={this.state.barPoints[1]} style={{width: 30, textAlign: "center"}}></input>
+        <input type="text" class="recipe" name="barPoints1" value={this.state.barPoints[1]} onChange={this.changeBarPoints1} style={{width: 30, textAlign: "center"}}></input>
         <label> 3: </label>
-        <input type="text" class="recipe" name="barPoints2" value={this.state.barPoints[2]} style={{width: 30, textAlign: "center"}}></input>
+        <input type="text" class="recipe" name="barPoints2" value={this.state.barPoints[2]} onChange={this.changeBarPoints2} style={{width: 30, textAlign: "center"}}></input>
         <label> </label>
         <button type="button" onClick={this.removeRecipe}> Remove Recipe </button>
         <br />
@@ -127,8 +140,8 @@ export class LevelForm extends React.Component {
     this.setState({levelName: event.target.value});
   }
 
-  changeTimer(event) {
-    this.setState(this.state.levelTimer, event.target.value);
+  changeTimer = (event) => {
+    this.setState({levelTimer: event.target.value});
   }
 
   addCard = () => {
@@ -240,7 +253,7 @@ export class LevelForm extends React.Component {
           <input type="text" name="levelTimer" value={this.state.levelTimer} onChange={this.changeTimer}/>
           <br />
 
-          {/* <br />
+          <br />
           <label> Cards </label> <button type="button" onClick={this.addCard}>New Card</button>
           <br />
           <div id="cards">
@@ -248,7 +261,7 @@ export class LevelForm extends React.Component {
               console.log(card);
               return(card);
             })}
-          </div>  */}
+          </div>
 
           <br/>
           <label>Recipes</label> <button type="button" onClick={this.addRecipe}>New Recipe</button>
