@@ -27,44 +27,24 @@ class GenreSelect extends React.Component {
     if (this.state.genre === "ROCK") {
       return (
         <select name="music" value={this.state.music} onChange={this.changeMusic}>
-          <option value="classical01">classical01</option>
-          <option value="classical02">classical02</option>
-          <option value="classical03">classical03</option>
-          <option value="classical04">classical04</option>
-          <option value="classical05">classical05</option>
-          <option value="classical06">classical06</option>
-          <option value="classical07">classical07</option>
-          <option value="classical08">classical08</option>
-          <option value="classical09">classical09</option>
-          <option value="classical10">classical10</option>
-          <option value="classical11">classical11</option>
-          <option value="classical12">classical12</option>
-          <option value="classical13">classical13</option>
-          <option value="classical14">classical14</option>
-          <option value="classical15">classical15</option>
+          <option value="rock01">rock01</option>
+          <option value="rock02">rock02</option>
+          <option value="rock03">rock03</option>
+          <option value="rock04">rock04</option>
+          <option value="rock05">rock05</option>
+          <option value="rock06">rock06</option>
+          <option value="rock07">rock07</option>
+          <option value="rock08">rock08</option>
+          <option value="rock09">rock09</option>
+          <option value="rock10">rock10</option>
+          <option value="rock11">rock11</option>
+          <option value="rock12">rock12</option>
+          <option value="rock13">rock13</option>
+          <option value="rock14">rock14</option>
+          <option value="rock15">rock15</option>
         </select>
       )
     } else if (this.state.genre === "JAZZ") {
-      return (
-        <select name="music" value={this.state.music} onChange={this.changeMusic}>
-          <option value="hiphop01">hiphop01</option>
-          <option value="hiphop02">hiphop02</option>
-          <option value="hiphop03">hiphop03</option>
-          <option value="hiphop04">hiphop04</option>
-          <option value="hiphop05">hiphop05</option>
-          <option value="hiphop06">hiphop06</option>
-          <option value="hiphop07">hiphop07</option>
-          <option value="hiphop08">hiphop08</option>
-          <option value="hiphop09">hiphop09</option>
-          <option value="hiphop10">hiphop10</option>
-          <option value="hiphop11">hiphop11</option>
-          <option value="hiphop12">hiphop12</option>
-          <option value="hiphop13">hiphop13</option>
-          <option value="hiphop14">hiphop14</option>
-          <option value="hiphop15">hiphop15</option>
-        </select>
-      )
-    } else if (this.state.genre === "HIPHOP") {
       return (
         <select name="music" value={this.state.music} onChange={this.changeMusic}>
           <option value="jazz01">jazz01</option>
@@ -84,24 +64,44 @@ class GenreSelect extends React.Component {
           <option value="jazz15">jazz15</option>
         </select>
       )
+    } else if (this.state.genre === "HIPHOP") {
+      return (
+        <select name="music" value={this.state.music} onChange={this.changeMusic}>
+          <option value="hiphop01">hiphop01</option>
+          <option value="hiphop02">hiphop02</option>
+          <option value="hiphop03">hiphop03</option>
+          <option value="hiphop04">hiphop04</option>
+          <option value="hiphop05">hiphop05</option>
+          <option value="hiphop06">hiphop06</option>
+          <option value="hiphop07">hiphop07</option>
+          <option value="hiphop08">hiphop08</option>
+          <option value="hiphop09">hiphop09</option>
+          <option value="hiphop10">hiphop10</option>
+          <option value="hiphop11">hiphop11</option>
+          <option value="hiphop12">hiphop12</option>
+          <option value="hiphop13">hiphop13</option>
+          <option value="hiphop14">hiphop14</option>
+          <option value="hiphop15">hiphop15</option>
+        </select>
+      )
     } else if (this.state.genre === "CLASSICAL") {
       return (
         <select name="music" value={this.state.music} onChange={this.changeMusic}>
-          <option value="rock01">rock01</option>
-          <option value="rock02">rock02</option>
-          <option value="rock03">rock03</option>
-          <option value="rock04">rock04</option>
-          <option value="rock05">rock05</option>
-          <option value="rock06">rock06</option>
-          <option value="rock07">rock07</option>
-          <option value="rock08">rock08</option>
-          <option value="rock09">rock09</option>
-          <option value="rock10">rock10</option>
-          <option value="rock11">rock11</option>
-          <option value="rock12">rock12</option>
-          <option value="rock13">rock13</option>
-          <option value="rock14">rock14</option>
-          <option value="rock15">rock15</option>
+          <option value="classical01">classical01</option>
+          <option value="classical02">classical02</option>
+          <option value="classical03">classical03</option>
+          <option value="classical04">classical04</option>
+          <option value="classical05">classical05</option>
+          <option value="classical06">classical06</option>
+          <option value="classical07">classical07</option>
+          <option value="classical08">classical08</option>
+          <option value="classical09">classical09</option>
+          <option value="classical10">classical10</option>
+          <option value="classical11">classical11</option>
+          <option value="classical12">classical12</option>
+          <option value="classical13">classical13</option>
+          <option value="classical14">classical14</option>
+          <option value="classical15">classical15</option>
         </select>
       )
     } else {
@@ -121,7 +121,7 @@ class GenreSelect extends React.Component {
           <option value="ROCK">ROCK</option>
           <option value="JAZZ">JAZZ</option>
           <option value="HIPHOP">HIPHOP</option>
-          <option value="FOLK">CLASSICAL</option>
+          <option value="CLASSICAL">CLASSICAL</option>
         </select>
 
         {this.getMusicSelect()}
